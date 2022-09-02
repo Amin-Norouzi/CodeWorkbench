@@ -8,20 +8,52 @@
 
 <nav th:replace="layouts :: navbar"></nav>
 
+<br>
+
 <div class="container">
-    <form action="/projects/save" method="POST" th:object="${project}">
+    <form method="POST" th:action="@{/projects/save}" th:object="${project}">
 
-        <input placeholder="Project Name" th:field="*{name}" type="text">
+        <div class="form-group row">
+            <input placeholder="Project Name" th:field="*{name}" type="text">
+        </div>
 
-        <select th:field="${project.stage}">
-            <option th:value="NOTSTARTED"> Not Started</option>
-            <option th:value="INPROGRESS"> In Progress</option>
-            <option th:value="COMPLETED"> Completed</option>
-        </select>
+        <div class="form-group row">
+            <select th:field="${project.stage}">
+                <option th:value="NOTSTARTED"> Not Started</option>
+                <option th:value="INPROGRESS"> In Progress</option>
+                <option th:value="COMPLETED"> Completed</option>
+            </select>
+        </div>
 
-        <textarea placeholder="Enter Project Description" th:field="${project.description}" type="text"></textarea>
+        <div class="form-group row">
+            <textarea placeholder="Enter Project Description" th:field="${project.description}" type="text"></textarea>
+        </div>
 
-        <button type="submit">Create Project</button>
+        <div class="form-group row">
+            <select multiple="multiple" th:field="*{employees}">
+                <option th:each="employee : ${allEmployees}"
+                        th:text="${employee.firstName}"
+                        th:value="${employee.employeeId}">
+                </option>
+            </select>
+        </div>
+
+        Project Start Date:
+        <div class="form-group row">
+            <input class="mb-4 col-2 col-xs-4" id="dp3" th:field="${project.startDate}" type="text" value="Start Date">
+        </div>
+
+        Project End Date:
+        <div class="form-group row">
+            <input class="mb-4 col-2 col-xs-4" id="dp4" th:field="${project.endDate}" type="text" value="End Date">
+        </div>
+
+        <script type="text/javascript">
+            $('#dp3').datepicker();
+            $('#dp4').datepicker();
+        </script>
+
+        <button class="btn btn-info col-2" type="submit">Enter Project</button>
 
     </form>
 </div>
