@@ -9,7 +9,7 @@ import java.util.List;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long employeeId;
 
     private String firstName;
@@ -25,8 +25,7 @@ public class Employee {
     @JsonIgnore
     private List<Project> projects;
 
-    public Employee(long employeeId, String firstName, String lastName, String email) {
-        this.employeeId = employeeId;
+    public Employee(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

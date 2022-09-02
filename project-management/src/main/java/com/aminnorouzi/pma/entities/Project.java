@@ -3,13 +3,14 @@ package com.aminnorouzi.pma.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long projectId;
 
     private String name;
@@ -72,5 +73,13 @@ public class Project {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    // convenience method:
+    public void addEmployee(Employee emp) {
+        if (employees == null) {
+            employees = new ArrayList<>();
+        }
+        employees.add(emp);
     }
 }
