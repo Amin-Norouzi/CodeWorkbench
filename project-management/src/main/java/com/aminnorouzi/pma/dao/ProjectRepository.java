@@ -4,11 +4,11 @@ import com.aminnorouzi.pma.dto.ChartData;
 import com.aminnorouzi.pma.dto.TimeChartData;
 import com.aminnorouzi.pma.entities.Project;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface ProjectRepository extends CrudRepository<Project, Long> {
+public interface ProjectRepository extends PagingAndSortingRepository<Project, Long> {
 
     @Override
     List<Project> findAll();
